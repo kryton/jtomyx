@@ -1,3 +1,20 @@
+/* Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 package com.aol.jtomyx.executor.formats;
 
 import javax.servlet.http.HttpServletResponse;
@@ -6,20 +23,6 @@ import java.io.OutputStream;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
-/**
- * Created by IntelliJ IDEA.
- * User: ianholsman
- * Date: Aug 8, 2008
- * Time: 2:06:31 PM
- * <p/>
- * COPYRIGHT  (c)  2008 AOL LLC, Inc.
- * All Rights Reserved.
- * <p/>
- * PROPRIETARY - INTERNAL AOL USE ONLY
- * This document contains proprietary information that shall be
- * distributed, routed, or made available only within AOL,
- * except with written permission of AOL.
- */
 public abstract class Format {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     private static final SimpleDateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -24,6 +24,8 @@
         maxIdle="15" maxWait="2000" 
         validationQuery="SELECT 1" testWhileIdle="true"
     />
+    <!--
+
     <Resource name="jdbc/Oracle" auth="Container"
             type="javax.sql.DataSource" removeAbandoned="true"
             removeAbandonedTimeout="30"
@@ -37,6 +39,7 @@
             maxIdle="15" maxWait="2000"
             validationQuery="SELECT 1 from DUAL" testWhileIdle="true"
         />
+        -->
     <Environment name="jdbc/Type" type="java.lang.String" value="MySQL"/>
 
 </Context>
