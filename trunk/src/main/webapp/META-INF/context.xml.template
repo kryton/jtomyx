@@ -1,0 +1,43 @@
+<Context>
+
+<!-- Default set of monitored resources -->
+<WatchedResource>WEB-INF/web.xml</WatchedResource>
+               
+<!-- Uncomment this to disable session persistence across Tomcat restarts -->
+<Manager pathname="" />
+    <!--
+
+    -->
+
+<!-- This entry does not need to be in server.xml any longer -->
+<!-- Update dbName, username and password as needed -->
+<Resource name="jdbc/MySQL" auth="Container"
+        type="javax.sql.DataSource" removeAbandoned="true"
+        removeAbandonedTimeout="30"
+        username="XXXXX"
+        password="XXXXXX"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/XXXX?characterEncoding=utf-8&amp;zeroDateTimeBehavior=round"
+        factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory" 
+        initialSize="10" 
+        maxActive="30" 
+        maxIdle="15" maxWait="2000" 
+        validationQuery="SELECT 1" testWhileIdle="true"
+    />
+    <Resource name="jdbc/Oracle" auth="Container"
+            type="javax.sql.DataSource" removeAbandoned="true"
+            removeAbandonedTimeout="30"
+            username="XXXXXX"
+            password="XXXXXX"
+            driverClassName="oracle.jdbc.OracleDriver"
+            url="jdbc:oracle:thin:@64.12.215.239:1521:MAINDEV"
+            factory="org.apache.tomcat.dbcp.dbcp.BasicDataSourceFactory"
+            initialSize="10"
+            maxActive="30"
+            maxIdle="15" maxWait="2000"
+            validationQuery="SELECT 1 from DUAL" testWhileIdle="true"
+        />
+    <Environment name="jdbc/Type" type="java.lang.String" value="MySQL"/>
+
+</Context>
+
