@@ -22,7 +22,7 @@
                 <link rel="stylesheet" type="text/css"
                       href="../admin/jtomyx-admin.css">
                 </link>
-                <link rel="icon" href="../favicon.ico" type="image/ico"></link>
+                <link rel="icon" href="../favicon.ico" type="image/ico"> </link>
                 <link rel="shortcut icon" href="../favicon.ico"
                       type="image/ico">
                 </link>
@@ -35,7 +35,7 @@
                     </img>
                 </a>
                 <h1>jtomyx Table Exporer</h1>
-                <br clear="all"></br>
+                <br clear="all"> </br>
                 <table name="responseHeader">
                     <!-- This isn't technically the responseHeader, but it's brief -->
                     <xsl:apply-templates/>

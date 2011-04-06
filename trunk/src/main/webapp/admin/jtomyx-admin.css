@@ -6,13 +6,13 @@
 h1, h2, h3, h4, h5 {
     display: block;
     font-family: ITC Officina Sans Book, Terminator Two, Helvetica, Arial, sans-serif;
-    font-style: bold;
+    font-weight: bold;
     margin: 0;
 }
 
 strong {
     font-family: ITC Officina Sans Book, Terminator Two, Helvetica, Arial, sans-serif;
-    font-style: bold;
+    font-weight: bold;
     margin: 0;
 }
 
@@ -24,8 +24,8 @@ input[type="text"], textarea {
 
 input[type="submit"] {
     font-family: ITC Officina Sans Book, Helvetica, Arial, sans-serif;
-    font-style: bold;
-    font-size: 11;
+    font-weight: bold;
+    font-size: 120%;
     text-transform: capitalize;
     color: black;
     background-color: #dddddd;
@@ -49,7 +49,7 @@ table {
     border-left: 2px solid #666666;
     text-align: left;
     vertical-align: top;
-    cellpadding-right: 8px;
+    padding-right: 8px;
 }
 
 table[name="responseHeader"] {
@@ -75,7 +75,7 @@ tr>td[name="responseHeader"]:first-child {
 
 tr>td[name="responseHeader"]+td {
     text-align: left;
-    font-family: Courier;
+    font-family: Courier, serif;
 }
 
 th[name="responseBody"] {
@@ -117,6 +117,3 @@ a:hover {
     background: #ccccff;
 }
 
-a:offsite {
-    color: #0000aa;
-}

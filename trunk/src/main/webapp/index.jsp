@@ -5,8 +5,10 @@
     <title>jtomyx Server</title>
 </head>
 <body>
-Welcome!
-<br/>
+Jtomyx Server. <a href="admin/">Admin area</a>
+
+$LastChangedDate$<br>
+$LastChangedRevision: 2 <br>
 
 </body>
 </html>

@@ -9,7 +9,7 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
-
+     <xsl:strip-space elements="query" />
 
     <xsl:output method="html" indent="yes"
                 doctype-public="-//W3C//DTD HTML 4.01//EN"
@@ -48,9 +48,7 @@
         </table>
         <hr/>
         <form method="GET" action="../select/">
-            <textarea rows="4" cols="40" name="q">
-                <xsl:value-of select="query"></xsl:value-of>
-            </textarea>
+            <textarea rows="4" cols="40" name="q"><xsl:value-of select="normalize-space(query)"></xsl:value-of></textarea>
             <input name="getnumfound" type="hidden" value="1"/>
             <input name="version" type="hidden" value="1"/>
             <input name="start" type="hidden" value="0"/>

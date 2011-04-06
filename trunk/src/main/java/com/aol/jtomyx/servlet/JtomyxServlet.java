@@ -1,3 +1,20 @@
+/* Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 package com.aol.jtomyx.servlet;
 
 import com.aol.jtomyx.common.QueryConstants;
@@ -23,8 +40,7 @@ import java.util.logging.Logger;
 
 public class JtomyxServlet extends HttpServlet {
 
-    public static final Logger logger = Logger.getLogger(JtomyxServlet.class
-            .getName());
+    public static final Logger logger = Logger.getLogger(JtomyxServlet.class.getName());
 
     public static DataSource ds = null;
     public static String type = null;
@@ -80,7 +96,7 @@ public class JtomyxServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            logger.info("POST " + request.getContextPath());
+            logger.fine("POST " + request.getContextPath());
             if (ds == null) {
                 logger.severe("Data Source not initialized properly, exiting");
                 return;
@@ -97,7 +113,8 @@ public class JtomyxServlet extends HttpServlet {
 
 
             String query = (isEmptyOrNull(qQuery)) ? sqlQuery : qQuery;
-            logger.info("The Query is " + query);
+
+            logger.fine("The Query is " + query);
 
             if (isEmptyOrNull(query)) {
                 logger.severe("No query found in request.");
@@ -195,7 +212,7 @@ public class JtomyxServlet extends HttpServlet {
                     query = query.replaceFirst(" SQL_CALC_FOUND_ROWS ", " ");
                     query = query.replaceFirst("select ", "SELECT ");
                     query = query.replaceFirst("SELECT ", "SELECT SQL_CALC_FOUND_ROWS ");
-                    logger.info("Query after SQL_CALC_FOUND_ROWS: " + query);
+                    logger.fine("Query after SQL_CALC_FOUND_ROWS: " + query);
                 }
 
                 xsl = request.getParameter(QueryConstants.XSL);
@@ -213,7 +230,7 @@ public class JtomyxServlet extends HttpServlet {
                     os.close();
                     timer.end();
 
-                    logger.info("Time taken to serve the response: "
+                    logger.fine("Time taken to serve the response: "
                             + timer.getTimeInMillis() + " ms");
 
                 } catch (SQLException sqe) {
