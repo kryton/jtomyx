@@ -65,6 +65,9 @@ public class JtomyxServlet extends HttpServlet {
             if (type.toLowerCase().equals("oracle")) {
                 JtomyxServlet.isOracle = true;
             }
+            if ( type.toLowerCase().equals("mysql"))  {
+                JtomyxServlet.isMySQL=true;
+            }
             if (type.toLowerCase().equals("postgresql")) {
                 JtomyxServlet.isPostgres = true;
             }
