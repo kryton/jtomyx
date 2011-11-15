@@ -1,7 +1,5 @@
-#summary One-sentence summary of this page.
 #labels Featured
-
-SQL Over HTTP
+#SQL Over HTTP
 
 = Introduction =
 
