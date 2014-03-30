@@ -1,6 +1,8 @@
 <%@ page import="javax.naming.Context" %>
 <%@ page import="javax.naming.InitialContext" %>
 <%@ page import="javax.naming.NamingException" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="java.sql.Connection" %>
 <!-- $HeadURL$ -->
 <!-- $LastChangedBy$ -->
 <!-- $LastChangedDate$ -->
@@ -17,14 +19,22 @@
 
 <body>
 <%
-    Context initCtx = new InitialContext();
-    Context envCtx = (Context) initCtx.lookup("java:comp/env");
     String type;
+    String jdbcString ;
+
     try {
+        Context initCtx = new InitialContext();
+        Context envCtx = (Context) initCtx.lookup("java:comp/env");
+
         type = (String) envCtx.lookup("jdbc/Type");
-    } catch (NamingException nme) {
+        jdbcString = (String) envCtx.lookup("jdbc/" + type);
+        envCtx.close();
+
+    } catch (Exception nme) {
         type = "MySQL";
+        jdbcString   = "undetermined";
     }
+
 %>
 <a href="../admin/"><img border="0" align="right" height="37"
                          width="123" src="jtomyx-logo.gif" alt="jtomyx"></a>

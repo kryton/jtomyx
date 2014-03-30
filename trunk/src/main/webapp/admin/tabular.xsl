@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="treeview.xsl"?>
+<?xml-stylesheet type="text/xsl" href="tabular.xsl"?>
 
 <!-- $HeadURL$ -->
 <!-- $LastChangedBy$ -->
 <!-- $LastChangedDate$ -->
 <!-- $LastChangedRevision$ -->
 <!-- $Id$ -->
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.naming.OperationNotSupportedException" %>
+<%@ page import="javax.sql.DataSource" %>
+<%@ page import="java.util.logging.Logger" %>
+<%
+    String type = "MySQL";
+    String jdbcString = "undetermined";
+    try {
+        Context initCtx = new InitialContext();
+        Context envCtx = (Context) initCtx.lookup("java:comp/env");
 
+        type = (String) envCtx.lookup("jdbc/Type");
+        DataSource ds = (DataSource) envCtx.lookup("jdbc/" + type);
+        String url = ds.getConnection().getMetaData().getURL();
+        jdbcString = url.replaceFirst("jdbc:.*?://", "");
+        jdbcString = jdbcString.replaceFirst("\\?.*$", "");
+        envCtx.close();
+
+    } catch (OperationNotSupportedException ignore) {
+    } catch (Exception nme) {
+        Logger l = Logger.getAnonymousLogger();
+        l.warning(nme.getMessage());
+    }
+%>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 version="1.0">
      <xsl:strip-space elements="query" />
@@ -19,24 +43,26 @@
     <xsl:template match="/">
         <html>
             <head>
-                <link rel="stylesheet" type="text/css"
-                      href="../admin/jtomyx-admin.css">
-                </link>
-                <link rel="icon" href="../favicon.ico" type="image/ico"></link>
-                <link rel="shortcut icon" href="../favicon.ico"
-                      type="image/ico">
-                </link>
-                <title>jtomyx Search Results</title>
+                <title>webDB-j</title>
+                 <%@include file="../inc/head.jsp" %>
             </head>
             <body>
-                <a href="../admin/">
-                    <img border="0" align="right" height="37"
-                         width="123" src="../admin/jtomyx-logo.gif" alt="jtomyx">
-                    </img>
-                </a>
-                <h1>jtomyx Search Results</h1>
-                <br clear="all"></br>
+                <jsp:include page="../inc/header.jsp">
+                    <jsp:param name="type" value="<%= type %>"/>
+                    <jsp:param name="jdbcString" value="<%=jdbcString %>"/>
+                </jsp:include>
+                <div class="container-fluid">
+                    <div class="row">
+                        <jsp:include page="../inc/navbar.jsp">
+                            <jsp:param name="type" value="<%= type %>"/>
+                            <jsp:param name="jdbcString" value="<%=jdbcString %>"/>
+                        </jsp:include>
+                        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+               <h1 class="page-header">Results</h1>
                 <xsl:apply-templates/>
+                            </div>
+                </div>
+                </div>
             </body>
         </html>
     </xsl:template>
@@ -155,10 +181,8 @@
 
 
     <xsl:template match="responseBody">
-        <br></br>
-        <br></br>
         <table border="2">
-
+             <thead>
             <!-- table headers -->
             <tr>
                 <xsl:for-each select="record[1]/field">
@@ -167,8 +191,11 @@
                     </th>
                 </xsl:for-each>
             </tr>
+            </thead>
 
             <!-- table rows -->
+            <tbody>
+
             <xsl:for-each select="record">
                 <tr>
                     <xsl:for-each select="field">
@@ -180,10 +207,8 @@
                 </tr>
             </xsl:for-each>
 
+            </tbody>
         </table>
 
-
     </xsl:template>
-
-
 </xsl:stylesheet>
