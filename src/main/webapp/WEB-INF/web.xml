@@ -10,6 +10,7 @@
         <load-on-startup>1</load-on-startup>
 
     </servlet>
+
     <servlet-mapping>
         <servlet-name>Select</servlet-name>
         <url-pattern>/select/*</url-pattern>
@@ -18,6 +19,11 @@
         <servlet-name>Select</servlet-name>
         <url-pattern>/raw/*</url-pattern>
     </servlet-mapping>
+     <servlet-mapping>
+              <servlet-name>jsp</servlet-name>
+              <url-pattern>*.jsp</url-pattern>
+              <url-pattern>*.xsl</url-pattern>
+      </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

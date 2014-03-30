@@ -21,10 +21,7 @@ import com.aol.jtomyx.common.QueryConstants;
 import com.aol.jtomyx.common.Timer;
 import com.aol.jtomyx.executor.QueryExecutor;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NameNotFoundException;
-import javax.naming.NamingException;
+import javax.naming.*;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -84,12 +81,16 @@ public class JtomyxServlet extends HttpServlet {
             logger.info("Could not create connection in Servlet init(): " + e);
             e.printStackTrace();
 
-        } catch (NamingException nme) {
+        }  catch (OperationNotSupportedException ignore) {
+                    logger.info("OperationNotSupportedException - (ignore)");
+                }
+        catch (NamingException nme) {
             logger
                     .severe("Could not get the JNDI context and initialize data source\n"
                             + nme);
             nme.printStackTrace();
         }
+
     }
 
     public static boolean isEmptyOrNull(String str) {

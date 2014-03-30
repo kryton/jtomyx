@@ -26,7 +26,7 @@
                 <link rel="shortcut icon" href="../favicon.ico"
                       type="image/ico">
                 </link>
-                <title>Atomics Status</title>
+                <title>webDB Status</title>
             </head>
             <body>
                 <a href="../admin/">
@@ -34,7 +34,7 @@
                          width="230" src="../admin/jtomyx-logo.gif" alt="ATOMICS">
                     </img>
                 </a>
-                <h1>Atomics Status</h1>
+                <h1>webDB Status</h1>
                 <xsl:apply-templates/>
             </body>
         </html>
