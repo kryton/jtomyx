@@ -59,15 +59,19 @@
                         </jsp:include>
 
                         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                            <h1 class="page-header">Results</h1>
-                            <table name="responseHeader">
-                                <xsl:apply-templates/>
-                            </table>
+                                               <h1 class="page-header">Results</h1>
+                                               <xsl:apply-templates select="response/header"/>
+                                               <table name="responseFields" class="table table-hover table-condensed">
+                                                   <xsl:apply-templates select="response/data"/>
+                                               </table>
                         </div>
 
                     </div>
                 </div>
-
+                <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+                <!-- Include all compiled plugins (below), or include individual files as needed -->
+                <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+                <script src="/db/js/docs.min.js"></script>
             </body>
         </html>
     </xsl:template>
@@ -90,9 +94,9 @@
 
     <xsl:template match="numRecords">
         <tr>
-            <td name="responseHeader">
-                <strong>Tables in Database:&#xa0;</strong>
-            </td>
+            <th name="responseHeader">
+               Tables in Database:
+            </th>
             <td colspan="6">
                 <xsl:value-of select="."></xsl:value-of>
             </td>
@@ -107,60 +111,57 @@
     <xsl:template match="QTime"></xsl:template>
 
 
-    <xsl:template match="responseBody">
-        <xsl:for-each select="record">
+    <xsl:template match="data">
+        <thead>
+      		  <th colspan='2'>Column</th>
+      		  <th>Field Info /
+      		  Index Info /
+      		  Key Info /
+      		  Row Count /
+      		  Comment</th>
+      	  </thead>
+      	  <tbody>
+        <xsl:for-each select="rows/r">
             <tr>
-                <td name="responseHeader" colspan="2">
-                    <!--	      [<a href="/raw/?q=DESCRIBE+{string(field/value)}&amp;version=1"><xsl:value-of select="field/value"></xsl:value-of></a>] -->
+                <th name="responseHeader" colspan="2">
                     [
-                    <a
-                            href="../raw/?q=SHOW+FULL+COLUMNS+FROM+{string(field/value)}&amp;version=1">
-                        <xsl:value-of select="field/value"></xsl:value-of>
+                    <a href="../raw/?q=SHOW+FULL+COLUMNS+FROM+{string(v)}&amp;version=1">
+                        <xsl:value-of select="v"></xsl:value-of>
                     </a>
                     ]
-                </td>
+                </th>
                 <td name="responseHeader">
-                    [
+
                     <a name="smallLink"
-                       href="../raw/?q=DESCRIBE+{string(field/value)}&amp;version=1">
-                        Field Info
+                       href="../raw/?q=DESCRIBE+{string(v)}&amp;version=1">
+                        F
                     </a>
-                    ]
-                </td>
-                <td name="responseHeader">
-                    [
+                    /
+
                     <a name="smallLink"
-                       href="../raw/?q=SHOW+INDEX+FROM+{string(field/value)}&amp;version=1">
-                        Index Info
+                       href="../raw/?q=SHOW+INDEX+FROM+{string(v)}&amp;version=1">
+                        I
                     </a>
-                    ]
-                </td>
-                <td name="responseHeader">
-                    [
+                    /
                     <a name="smallLink"
-                       href="../raw/?q=SHOW+KEYS+FROM+{string(field/value)}&amp;version=1">
-                        Key Info
+                       href="../raw/?q=SHOW+KEYS+FROM+{string(v)}&amp;version=1">
+                        K
                     </a>
-                    ]
-                </td>
-                <td name="responseHeader">
-                    [
+                   /
                     <a name="smallLink"
-                       href="../raw/?q=SELECT+count%28*%29+AS+'{string(field/value)} Row Count'+FROM+{string(field/value)}&amp;version=1">
-                        Row Count
+                       href="../raw/?q=SELECT+count%28*%29+AS+'{string(v)} Row Count'+FROM+{string(v)}&amp;version=1">
+                        R
                     </a>
-                    ]
-                </td>
-                <td name="responseHeader">
-                    [
+                   /
                     <a name="smallLink"
-                       href="../raw/?q=SELECT+TABLE_COMMENT+FROM+information_schema.tables+WHERE+TABLE_NAME+%3D%22{string(field/value)}%22%0D%0A&amp;version=1">
-                        Comment
+                       href="../raw/?q=SELECT+TABLE_COMMENT+FROM+information_schema.tables+WHERE+TABLE_NAME+%3D%22{string(v)}%22%0D%0A&amp;version=1">
+                        C
                     </a>
-                    ]
+
                 </td>
             </tr>
         </xsl:for-each>
+        </tbody>
     </xsl:template>
 
 
