@@ -145,7 +145,7 @@ public class Compact extends Format {
         bos.write("</fields>\n".getBytes());
         bos.write("<rows>\n".getBytes());
         while (rs.next()) {
-            bos.write("<row>\n".getBytes());
+            bos.write("<r>\n".getBytes());
             for (int i = 0; i < colMetadata.length; i++) {
                 /*
                 String name = colMetadata[i].getColumnName();
@@ -168,13 +168,13 @@ public class Compact extends Format {
                 bos.write("</name>".getBytes());
 
                 */
-                bos.write("<value>".getBytes());
+                bos.write("<v>".getBytes());
                 bos.write(value);
-                bos.write("</value>\n".getBytes());
+                bos.write("</v>\n".getBytes());
 
 
             }
-            bos.write("</row>\n".getBytes());
+            bos.write("</r>\n".getBytes());
         }
         bos.write("</rows>\n".getBytes());
 

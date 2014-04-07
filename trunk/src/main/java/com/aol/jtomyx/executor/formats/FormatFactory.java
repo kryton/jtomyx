@@ -20,11 +20,11 @@ package com.aol.jtomyx.executor.formats;
 public class FormatFactory {
     public static Format getFormatter(String formatName) {
         if (null == formatName) {
-            return new XML();
+            return new Compact();
         }
         String fmt = formatName.toLowerCase();
         if (fmt.equals("xml")) {
-            return new XML();
+            return new Compact();
         }
         if (fmt.equals("solr")) {
             return new Solr();
@@ -32,12 +32,12 @@ public class FormatFactory {
         if (fmt.equals("json")) {
             return new JSON();
         }
-        if (fmt.equals("compact")) {
-            return new Compact();
+        if (fmt.equals("classic")) {
+            return new XML();
         }
         if (fmt.equals("csv")) {
             return new CSV();
         }
-        return new XML();
+        return new Compact();
     }
 }
