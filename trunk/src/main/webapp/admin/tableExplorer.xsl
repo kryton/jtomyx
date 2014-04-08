@@ -59,11 +59,11 @@
                         </jsp:include>
 
                         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                                               <h1 class="page-header">Results</h1>
-                                               <xsl:apply-templates select="response/header"/>
-                                               <table name="responseFields" class="table table-hover table-condensed">
-                                                   <xsl:apply-templates select="response/data"/>
-                                               </table>
+                               <h1 class="page-header">Table Explorer</h1>
+                               <xsl:apply-templates select="response/header"/>
+                               <table name="responseFields" class="table table-hover table-condensed">
+                               <xsl:apply-templates select="response/data"/>
+                               </table>
                         </div>
 
                     </div>
