@@ -1,0 +1,1 @@
+jtomyx provides a light layer over a relational DBMS allowing you to use HTTP.
